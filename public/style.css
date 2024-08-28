@@ -1,0 +1,100 @@
+/* Base Styles */
+body {
+    background-color:#ddd;
+    font-family: cursive;
+}
+
+.calculate-phone-bill-widget {
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.calculate-phone-bill-widget label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.calculate-phone-bill-widget input, 
+.calculate-phone-bill-widget select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.calculate-phone-bill-widget .calculate-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.calculate-phone-bill-widget .calculate-btn:hover {
+    background-color: #0056b3;
+}
+
+.calculate-phone-bill-widget .result h3 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+.calculate-phone-bill-widget .result p {
+    margin: 4px 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .calculate-phone-bill-widget {
+        padding: 15px;
+    }
+
+    .calculate-phone-bill-widget input, 
+    .calculate-phone-bill-widget select {
+        padding: 6px;
+    }
+
+    .calculate-phone-bill-widget .calculate-btn {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background-color: #e0e0e0; /* Adjust background color for smaller screens if needed */
+    }
+
+    .calculate-phone-bill-widget {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .calculate-phone-bill-widget label {
+        font-size: 14px;
+    }
+
+    .calculate-phone-bill-widget input, 
+    .calculate-phone-bill-widget select {
+        padding: 4px;
+    }
+
+    .calculate-phone-bill-widget .calculate-btn {
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .calculate-phone-bill-widget .result h3 {
+        font-size: 18px;
+    }
+
+    .calculate-phone-bill-widget .result p {
+        font-size: 14px;
+    }
+}

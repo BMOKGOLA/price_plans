@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Plan Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.3/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="alphineData.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div x-data="pricePlanApp()" x-init="init()">
+        <!-- Create Price Plan -->
+         
+        <h2>Create Price Plan</h2>
+        <input x-model.number="newPlan.plan_name" placeholder="Plan Name">
+        <input x-model.number="newPlan.call_price" type="number" placeholder="Call Price" min="0" @input="validatePositive('call_price')">
+        <input x-model.number="newPlan.sms_price" type="number" placeholder="SMS Price" min="0" @input="validatePositive('sms_price')">
+        <button @click="createPricePlan()">Create</button>
+    
+        <!-- Update Price Plan -->
+        <h2>Update Price Plan</h2>
+        <input x-model.number="updatePlan.plan_name" placeholder="Plan Name">
+        <input x-model.number="updatePlan.call_price" type="number" placeholder="Call Price" min="0" @input="validatePositive('call_price', true)">
+        <input x-model.number="updatePlan.sms_price" type="number" placeholder="SMS Price" min="0" @input="validatePositive('sms_price', true)">
+        <button @click="updatePricePlan()">Update</button>
+    
+        <!-- Delete Price Plan -->
+        <h2>Delete Price Plan</h2>
+        <input x-model.number="deletePlan.id" type="number" placeholder="Plan ID">
+        <button @click="deletePricePlan()">Delete</button>
+    
+        <!-- Calculate Phone Bill -->
+        <h2>Calculate Phone Bill</h2>
+        <div class="calculate-phone-bill-widget">
+            <label for="pricePlanSelect">Select Price Plan:</label>
+            <select x-model="billCalculation.plan_name" id="pricePlanSelect">
+                <option disabled value="">-- Select a Price Plan --</option>
+                <template x-for="plan in pricePlans" :key="plan.id">
+                    <option :value="plan.plan_name" x-text="plan.plan_name"></option>
+                </template>
+            </select>
+    
+            <div>
+                <label for="callMinutes">Call Minutes:</label>
+                <input x-model.number="billCalculation.call_minutes" id="callMinutes" type="number" placeholder="Enter minutes" min="0" @input="validatePositive('call_minutes')">
+            </div>
+    
+            <div>
+                <label for="smsCount">Number of SMS:</label>
+                <input x-model.number="billCalculation.sms_count" id="smsCount" type="number" placeholder="Enter SMS count" min="0" @input="validatePositive('sms_count')">
+            </div>
+    
+            <button @click="calculatePhoneBill()" class="calculate-btn">Calculate</button>
+    
+            <div class="result">
+                <h3>Breakdown:</h3>
+                <p>Call Cost: <span x-text="callCost"></span></p>
+                <p>SMS Cost: <span x-text="smsCost"></span></p>
+                <h3>Total: <span x-text="total"></span></h3>
+            </div>
+        </div>
+    
+        <!-- Price Plans List -->
+        <h2>Price Plans</h2>
+        <ul>
+            <template x-for="plan in pricePlans" :key="plan.id">
+                <li>
+                    <strong x-text="plan.plan_name"></strong> - Call Price: <span x-text="plan.call_price"></span>, SMS Price: <span x-text="plan.sms_price"></span>
+                </li>
+            </template>
+        </ul>
+    </div>
+    
+    </div>
+</body>
+</html>
+
